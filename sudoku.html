@@ -27,15 +27,15 @@ function possible (x,y,n)
 	// cheching if we have n in a small squere
 	var r = x % 3;
 	var x0 = x - r;
-//	console.log(x0);
+	console.log(x0);
 
 	r = y % 3;
 	var y0 = y - r;
-	// console.log(y0);
+	console.log(y0);
 
-	for (i=0; i<3; i++)
+	for (let i=0; i<3; i++)
 	{
-		for (j=0; j<3; j++)
+		for (let j=0; j<3; j++)
 		{
 			if (grid[x0+i][y0+j] == n)
 			{
@@ -47,7 +47,7 @@ function possible (x,y,n)
 	return true;
 } // end of function Posssible
 
-function print (matrix)
+function printgrid (matrix)
 {
 	for (let i = 0; i < 9; i++)
 	{
@@ -78,17 +78,19 @@ function findzero()
 	return false;
 }
 
-function solve(i0,j0)
+function solve()
 {
 	if (findzero())
 	{
 		for (let n = 1; n < 10; n++)
 		{
-			if (possible(i0,j0,n))
+			if (possible(i0,j0,n)) /grid[i][j]: undefined/ here is a problem i0 and j0 don't change when recursive function pops out
 			{
-				grid[i0][j0] = n;
+				let ipr = i0;
+				let jpr = j0;
+				grid[ipr][jpr] = n;
 				solve();
-				grid[i0][j0] = 0;
+				grid[ipr][jpr] = 0;
 			}
 		}
 	}
@@ -109,9 +111,9 @@ var grid = [
 	[0, 0, 0, 9, 4, 0, 3, 0, 5]
 ];
 
-print(grid);
+printgrid(grid);
 solve();
-print(grid);
+printgrid(grid);
 
 </script>
 </body>
